@@ -60,7 +60,6 @@ erDiagram
     COLABORADOR {
         int Id
         string Nome
-        list<workshop> workshops
     }
 
     WORKSHOP {
@@ -68,7 +67,6 @@ erDiagram
         string Nome
         datetime DataRealizacao
         string Descricao
-        list<colaborador> colaboradores
     }
 
     WORKSHOPCOLABORADOR {
