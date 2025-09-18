@@ -45,17 +45,17 @@ namespace api_workshops.Controllers
             }
         }
 
-        [HttpPatch("{workshopId}/colaboradores/{colaboradorId}/presenca")]
-        public async Task<IActionResult> AtualizarPresenca(int workshopId, int colaboradorId, [FromBody] PresencaUpdateDTO dto)
+        [HttpPut("{workshopId}/colaboradores/{colaboradorId}/presenca")]
+        public async Task<IActionResult> AtualizarPresenca(int workshopId, int colaboradorId)
         {
             try
             {
-                await _Service.AtualizarPresencaAsync(workshopId, colaboradorId, dto.Presente);
-                return Ok("Presença atualizada com sucesso.");
+                await _Service.AtualizarPresencaAsync(workshopId, colaboradorId);
+                return Ok(new {sucesso = true, mensagem = "Presença atualizada com sucesso."});
             }
             catch (Exception)
             {
-                return NotFound("Participação não encontrada.");
+                return NotFound(new {sucesso = false, mensagem = "Workshop ou colaborador não encontrado."});
             }        
         }
 

@@ -18,12 +18,14 @@ namespace api_workshops.Service
 
         public async Task<ColaboradorReadDTO> Create(ColaboradorCreateDTO dto)
         {
+            // 1. Cria o colaborador
             var colaborador = new Colaborador
             {
                 Nome = dto.Nome
             };
 
             _Context.Colaboradores.Add(colaborador);
+            await _Context.SaveChangesAsync(); 
 
             if (dto.WorkshopId != null && dto.WorkshopId.Any())
             {
@@ -33,7 +35,7 @@ namespace api_workshops.Service
 
                 if (workshopsValidos == null || workshopsValidos.Count == 0)
                 {
-                    throw new InvalidOperationException();
+                    throw new InvalidOperationException("Nenhum workshop válido encontrado.");
                 }
 
                 foreach (var workshop in workshopsValidos)
@@ -41,21 +43,23 @@ namespace api_workshops.Service
                     var relacao = new WorkshopColaboradores
                     {
                         WorkshopId = workshop.Id,
-                        ColaboradorId = colaborador.Id,
+                        ColaboradorId = colaborador.Id, // ✅ Agora já existe um Id válido
                         Presente = false
                     };
                     _Context.WorkshopColaboradores.Add(relacao);
                 }
+
+                await _Context.SaveChangesAsync(); // 🔑 Salva as relações
             }
 
-            await _Context.SaveChangesAsync();
-
+            // 3. Buscar colaborador com workshops já relacionados
             var colaboradorComWorkshops = await _Context.Colaboradores
                 .Where(c => c.Id == colaborador.Id)
                 .Include(c => c.WorkshopColaboradores)
                     .ThenInclude(wc => wc.Workshop)
                 .FirstOrDefaultAsync();
 
+            // 4. Montar DTO de resposta
             var colaboradorDTO = new ColaboradorReadDTO
             {
                 Id = colaboradorComWorkshops.Id,

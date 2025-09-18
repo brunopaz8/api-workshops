@@ -88,7 +88,7 @@ namespace api_workshops.Service
             };
         }
 
-        public async Task<bool> AtualizarPresencaAsync(int workshopId, int colaboradorId, bool presente)
+        public async Task<bool> AtualizarPresencaAsync(int workshopId, int colaboradorId)
         {
             var participacao = await _Context.WorkshopColaboradores
                 .FirstOrDefaultAsync(x => x.WorkshopId == workshopId && x.ColaboradorId == colaboradorId);
@@ -98,7 +98,7 @@ namespace api_workshops.Service
                 throw new Exception(); 
             }
 
-            participacao.Presente = presente;
+            participacao.Presente = !participacao.Presente;
             await _Context.SaveChangesAsync();
 
             return true;
