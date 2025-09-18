@@ -24,7 +24,10 @@ Esta API faz parte do projeto **Workshop web**, desenvolvida em **.NET 8** para 
 - .NET 8
 - ASP.NET Core
 - Entity Framework Core
-- SQL Server ou MySQL
+  * Tools
+  * Design
+  * SqlServer
+- SQL Server
 - Swagger (para documentação da API)
 - Git/GitHub
 
@@ -89,15 +92,13 @@ Configure a connection string em `appsettings.json` ou `appsettings.Development.
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Database=WorkshopDB;User Id=seu_usuario;Password=sua_senha;TrustServerCertificate=True;"
+    "DefaultConnection": "Server=localhost\\sqlexpress;Initial Catalog=desafioWorkshop;Integrated Security=True;TrustServerCertificate=True"
   }
 }
 ```
 
 * **Server:**  `localhost`
-* **Database:** `WorkshopDB`
-* **Usuário:** seu usuário do banco
-* **Senha:** sua senha do banco
+* **Database:** `desafioWorkshop`
 
 ---
 
