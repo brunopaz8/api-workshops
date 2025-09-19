@@ -97,9 +97,9 @@ namespace api_workshops.Controllers
                 var workshop = await _Service.GetByName(name);
                 return Ok(workshop);
             }
-            catch (FileNotFoundException)
+            catch (KeyNotFoundException)
             {
-                return NotFound($"Nenhum workshop com o nome {name}encontrado com esse nome.");
+                return NotFound($"Nenhum workshop com o nome {name} encontrado com esse nome.");
             }
             
         }
@@ -135,7 +135,7 @@ namespace api_workshops.Controllers
             }
             catch (KeyNotFoundException)
             {
-                return NotFound("Nenhum workshop com id {id} foi encontrado!");
+                return NotFound($"Nenhum workshop com id {id} foi encontrado!");
             }
         }
 
