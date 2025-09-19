@@ -35,24 +35,22 @@ Esta API faz parte do projeto **Workshop web**, desenvolvida em **.NET 8** para 
 
 ## 🔧 Funcionalidades
 
-* **Colaboradores**
+- **Colaboradores**
+  - **Criar** colaborador
+  - **Buscar** todos os colaboradores
+  - **Buscar** colaborador por id
+  - **Buscar** colaborador por nome
+  - **Atualizar** colaborador
+  - **Deletar** colaborador
 
-  * Criar colaborador
-  * Buscar todos os colaboradores
-  * Buscar colaborador por id
-  * Buscar colaborador por nome
-  * Atualizar colaborador
-  * Deletar colaborador
-
-* **Workshops**
-
-  * Criar workshop
-  * Buscar todos os workshops
-  * Buscar workshop por id
-  * Buscar workshop por nome
-  * Atualizar workshop
-  * Deletar workshop
-  * Registrar presença de um colaborador em um workshop
+- **Workshops**
+  - **Criar** workshop
+  - **Buscar** todos os workshops
+  - **Buscar** workshop por id
+  - **Buscar** workshop por nome
+  - **Atualizar** workshop
+  - **Deletar** workshop
+  - **Registrar** presença de um colaborador em um workshop
 
 ---
 
