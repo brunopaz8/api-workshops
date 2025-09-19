@@ -113,6 +113,17 @@ Configure a connection string em `appsettings.json` ou `appsettings.Development.
 | 🟠 PUT    | /api/colaboradores/{id} | Atualiza o colaborador do id selecionado |
 | 🔴 DELETE | /api/colaboradores/{id} | Deleta o colaborador do id selecionado   |
 
+### 🟢 Criando um Colaborador
+
+**Body (JSON):**
+
+```json
+{
+  "nome": "string",
+  "workshopId": [ ]
+}
+```
+
 ---
 
 ## 🔍 Fazendo Requisições (api/workshops)
@@ -128,6 +139,19 @@ Configure a connection string em `appsettings.json` ou `appsettings.Development.
 | 🟠 PUT    | /api/workshops/{id}                                                | Atualiza workshop do id selecionado             |
 | 🔴 DELETE | /api/workshops/{id}                                                | Deleta workshop do id selecionado               |
 | 🟠 PUT    | /api/workshops/{workshopId}/colaboradores/{colaboradorId}/presenca | Registra presença do colaborador em um workshop |
+
+### 🟢 Criando um Workshop
+
+**Body (JSON):**
+
+```json
+{
+  "nome": "string",
+  "dataRealizacao": "2025-09-19T00:07:43.252Z",
+  "descricao": "string",
+  "colaboradorId": []
+}
+```
 
 ---
 
