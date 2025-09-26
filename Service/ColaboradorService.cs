@@ -18,7 +18,6 @@ namespace api_workshops.Service
 
         public async Task<ColaboradorReadDTO> Create(ColaboradorCreateDTO dto)
         {
-            // 1. Cria o colaborador
             var colaborador = new Colaborador
             {
                 Nome = dto.Nome
@@ -43,23 +42,21 @@ namespace api_workshops.Service
                     var relacao = new WorkshopColaboradores
                     {
                         WorkshopId = workshop.Id,
-                        ColaboradorId = colaborador.Id, // ✅ Agora já existe um Id válido
+                        ColaboradorId = colaborador.Id, 
                         Presente = false
                     };
                     _Context.WorkshopColaboradores.Add(relacao);
                 }
 
-                await _Context.SaveChangesAsync(); // 🔑 Salva as relações
+                await _Context.SaveChangesAsync(); 
             }
 
-            // 3. Buscar colaborador com workshops já relacionados
             var colaboradorComWorkshops = await _Context.Colaboradores
                 .Where(c => c.Id == colaborador.Id)
                 .Include(c => c.WorkshopColaboradores)
                     .ThenInclude(wc => wc.Workshop)
                 .FirstOrDefaultAsync();
 
-            // 4. Montar DTO de resposta
             var colaboradorDTO = new ColaboradorReadDTO
             {
                 Id = colaboradorComWorkshops.Id,
